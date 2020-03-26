@@ -1,0 +1,6 @@
+*.js linguist-language=ts
+
+static/js/vendored/* linguist-vendored
+
+dist linguist-generated
+.nuxt linguist-generated

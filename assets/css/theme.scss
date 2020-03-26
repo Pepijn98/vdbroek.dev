@@ -1,0 +1,58 @@
+@import "~/assets/css/colors.scss";
+
+:root {
+    --primary: #{$primary};
+    --primary-invert: #{$primary-invert};
+    --secondary: #{$secondary};
+    --secondary-invert: #{$secondary-invert};
+    --highlight: #{$highlight};
+    --highlight-invert: #{$highlight-invert};
+    --accent: #{$accent};
+    --accent-invert: #{$accent-invert};
+    --text: #{$text};
+    --background: #{$background};
+    --light: #{$light};
+    --dark: #{$dark};
+    --info: #{$info};
+    --success: #{$success};
+    --warning: #{$warning};
+    --danger: #{$danger};
+    --blue: #007bff;
+    --indigo: #6610f2;
+    --purple: #6f42c1;
+    --pink: #e83e8c;
+    --red: #dc3545;
+    --orange: #fd7e14;
+    --yellow: #ffc107;
+    --green: #28a745;
+    --teal: #20c997;
+    --cyan: #17a2b8;
+    --white: #{$white};
+    --gray: #6c757d;
+    --gray-dark: #343a40;
+    --black: #{$black};
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+html,
+body {
+    background: var(--background);
+    height: 100%;
+    display: grid;
+    overflow-x: auto;
+    overflow-y: auto;
+}
+
+#__nuxt,
+#__layout,
+#__layout > div {
+    height: 100vh;
+}
+
+.button.is-rounded {
+    padding-left: .75em;
+    padding-right: .75em;
+}
