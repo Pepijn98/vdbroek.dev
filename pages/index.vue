@@ -9,10 +9,13 @@
                         </div>
                         <div class="about column is-6">
                             <h1 class="title">{{ user.name }} (KurozeroPB)</h1>
-                            <h2
-                                class="subtitle"
-                            >
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            <h2 class="subtitle">
+                                Hello, welcome to this website.<br>
+                                I'm a fullstack developer based in the Netherlands.<br>
+                                I'm {{ calculateAge() }} years old and have been a fullstack developer for 5 years!<br>
+                                I've contibuted and made different projects like Jeanne (Discord Bot), Kitsu C# library and CustomRPC to set rich presence on discord. Scroll down to see my pinned repositiries!
+                                Everything I do is to improve my programming skills in several languages and keep learning new things. I mainly enjoy using JavaScript/TypeScript (NodeJS) and Kotlin but I've also used Swift, Rust, Golang and Python.
+                                If you're interested in seeing what I make scroll down to see my pinned repositiries or go to my github page to see all my repositiries.
                             </h2>
                             <div class="level">
                                 <div class="level-left">
@@ -25,8 +28,7 @@
                                         size="is-medium"
                                         icon-pack="fab"
                                         icon-left="github"
-                                        rounded
-                                    />
+                                        rounded />
                                     <b-button
                                         class="level-item"
                                         tag="a"
@@ -36,8 +38,7 @@
                                         size="is-medium"
                                         icon-pack="fab"
                                         icon-left="discord"
-                                        rounded
-                                    />
+                                        rounded />
                                     <b-button
                                         class="level-item"
                                         tag="a"
@@ -47,8 +48,7 @@
                                         size="is-medium"
                                         icon-pack="fab"
                                         icon-left="twitter"
-                                        rounded
-                                    />
+                                        rounded />
                                     <b-button
                                         class="level-item"
                                         tag="a"
@@ -58,19 +58,17 @@
                                         size="is-medium"
                                         icon-pack="fab"
                                         icon-left="facebook"
-                                        rounded
-                                    />
+                                        rounded />
                                     <b-button
                                         class="level-item"
                                         tag="a"
-                                        href="https://www.reddit.com/user/ShinyDrag0n"
+                                        href="https://www.linkedin.com/in/pepijn-van-den-broek-84a94b18a/"
                                         target="_blank"
                                         type="is-primary"
                                         size="is-medium"
                                         icon-pack="fab"
-                                        icon-left="reddit"
-                                        rounded
-                                    />
+                                        icon-left="linkedin"
+                                        rounded />
                                     <b-button
                                         class="level-item"
                                         tag="a"
@@ -80,8 +78,7 @@
                                         size="is-medium"
                                         icon-pack="fab"
                                         icon-left="keybase"
-                                        rounded
-                                    />
+                                        rounded />
                                     <b-button
                                         class="level-item"
                                         tag="a"
@@ -91,8 +88,7 @@
                                         size="is-medium"
                                         icon-pack="fab"
                                         icon-left="google-play"
-                                        rounded
-                                    />
+                                        rounded />
                                 </div>
                             </div>
                         </div>
@@ -112,7 +108,7 @@
             </div>
         </section>
         <section id="repos" class="hero is-fullheight" style="text-align: center;">
-            <h1 class="title" style="margin-top: 20px;">Pinned Repos</h1>
+            <h1 class="title" style="margin-top: 20px;">Pinned Repositiries</h1>
             <div class="hero-body">
                 <div class="container">
                     <div class="columns is-centered is-multiline">
@@ -158,6 +154,13 @@ class IndexPage extends Vue {
         if (element) {
             element.scrollIntoView({ behavior: "smooth" });
         }
+    }
+
+    calculateAge() {
+        const birthday = new Date("1998-02-26");
+        const ageDiff = Date.now() - birthday.getTime();
+        const ageDate = new Date(ageDiff);
+        return Math.abs(ageDate.getUTCFullYear() - 1970);
     }
 
     isError(response: GithubUser | ErrorResponse): response is ErrorResponse {

@@ -16,7 +16,7 @@ const settings: Settings = {
         }
     },
     sentry: {
-        dsn: process.env.DSN",
+        dsn: process.env.DSN || "",
         // publishRelease: true,
         // attachCommits: true,
         repo: pkg.repository.url,

@@ -33,6 +33,11 @@
     --black: #{$black};
 }
 
+::selection {
+    background-color: var(--primary);
+    color: white;
+}
+
 html {
     scroll-behavior: smooth;
 }
