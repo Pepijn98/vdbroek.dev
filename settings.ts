@@ -10,8 +10,8 @@ const settings: Settings = {
     google: {
         test: env === "development" ? true : false,
         analytics: {
-            trackingId: "",
-            accountId: "",
+            trackingId: process.env.TRACKING_ID || "",
+            accountId: process.env.ACCOUNT_ID || "",
             domain: env === "development" ? "http://localhost:3000" : "https://vdbroek.dev"
         }
     },
