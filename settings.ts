@@ -8,10 +8,9 @@ const settings: Settings = {
     version: pkg.version,
     host: env === "development" ? "http://localhost:3000" : "https://vdbroek.dev",
     google: {
-        test: env === "development" ? true : false,
+        test: env === "development",
         analytics: {
-            trackingId: process.env.TRACKING_ID || "",
-            accountId: process.env.ACCOUNT_ID || "",
+            id: process.env.TRACKING_ID || "",
             domain: env === "development" ? "http://localhost:3000" : "https://vdbroek.dev"
         }
     },

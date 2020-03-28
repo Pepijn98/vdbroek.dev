@@ -1,5 +1,7 @@
 import * as SentryTypes from "@sentry/minimal";
 import { NuxtAxiosInstance } from "@nuxtjs/axios";
+import { BuefyNamespace } from "buefy";
+import Utils from "~/interfaces/utils.types";
 
 declare module "@nuxt/types" {
     interface Context {
@@ -8,10 +10,10 @@ declare module "@nuxt/types" {
     }
 
     interface NuxtAppOptions {
-        // @nuxtjs/axios
+        $utils: Utils
+
         $axios: NuxtAxiosInstance;
-        
-        // sentry
+        $buefy: BuefyNamespace;
         readonly $sentry: typeof SentryTypes;
     }
 }

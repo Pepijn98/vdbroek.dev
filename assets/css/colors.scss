@@ -3,10 +3,13 @@
 $primary: #990000;
 $primary-invert: findColorInvert($primary);
 
+$primary-lighten: lighten($primary, 20%);
+$primary-lighten-invert: findColorInvert($primary-lighten);
+
 $secondary: #990000;
 $secondary-invert: findColorInvert($secondary);
 
-$highlight: darken($color: $primary, $amount: 5);
+$highlight: darken($primary, 5%);
 $highlight-invert: findColorInvert($highlight);
 
 $accent: #990000;

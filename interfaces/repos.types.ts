@@ -35,7 +35,6 @@ export interface Repo {
     topics: Topic[];
 }
 
-
 export interface ReposResponse {
     statusCode: number;
     statusMessage: string;

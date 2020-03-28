@@ -1,11 +1,11 @@
 <template>
-    <div>
+    <div class="portfolio">
         <section class="hero is-fullheight">
             <div class="hero-body">
                 <div class="container">
                     <div class="about-card columns is-centered">
-                        <div class="column is-3">
-                            <img class="avatar" height="300px" width="300px" :src="user.avatar_url">
+                        <div class="avatar column is-3">
+                            <img class="border" height="300px" width="300px" :src="user.avatar_url">
                         </div>
                         <div class="about column is-6">
                             <h1 class="title">{{ user.name }} (KurozeroPB)</h1>
@@ -20,7 +20,7 @@
                             <div class="level">
                                 <div class="level-left">
                                     <b-button
-                                        class="level-item"
+                                        class="level-item social-button"
                                         tag="a"
                                         href="https://github.com/kurozeropb"
                                         target="_blank"
@@ -30,7 +30,7 @@
                                         icon-left="github"
                                         rounded />
                                     <b-button
-                                        class="level-item"
+                                        class="level-item social-button"
                                         tag="a"
                                         href="https://discord.gg/p895czC"
                                         target="_blank"
@@ -40,7 +40,7 @@
                                         icon-left="discord"
                                         rounded />
                                     <b-button
-                                        class="level-item"
+                                        class="level-item social-button"
                                         tag="a"
                                         href="https://twitter.com/pvdbroek98"
                                         target="_blank"
@@ -50,7 +50,7 @@
                                         icon-left="twitter"
                                         rounded />
                                     <b-button
-                                        class="level-item"
+                                        class="level-item social-button"
                                         tag="a"
                                         href="https://www.facebook.com/pepijnvdbroek"
                                         target="_blank"
@@ -60,7 +60,7 @@
                                         icon-left="facebook"
                                         rounded />
                                     <b-button
-                                        class="level-item"
+                                        class="level-item social-button"
                                         tag="a"
                                         href="https://www.linkedin.com/in/pepijn-van-den-broek-84a94b18a/"
                                         target="_blank"
@@ -70,7 +70,7 @@
                                         icon-left="linkedin"
                                         rounded />
                                     <b-button
-                                        class="level-item"
+                                        class="level-item social-button"
                                         tag="a"
                                         href="https://keybase.io/kurozero"
                                         target="_blank"
@@ -80,7 +80,7 @@
                                         icon-left="keybase"
                                         rounded />
                                     <b-button
-                                        class="level-item"
+                                        class="level-item social-button"
                                         tag="a"
                                         href="https://play.google.com/store/apps/dev?id=4732354838030747081"
                                         target="_blank"
@@ -95,10 +95,10 @@
                     </div>
                 </div>
             </div>
-            <div style="text-align: center;">
+            <div class="scroll">
                 <b-button
                     tag="a"
-                    class="scroll"
+                    class="scroll-btn"
                     style="margin-bottom: 20px;"
                     type="is-primary"
                     icon-left="caret-down"
@@ -136,14 +136,6 @@ class IndexPage extends Vue {
     user: GithubUser | {} = {};
     repos: Repo[] = [];
 
-    get repo() {
-        if (this.repos.length > 1) {
-            return this.repos[1];
-        } else {
-            return {};
-        }
-    }
-
     async beforeMount() {
         await this.getProfile();
         await this.getRepos();
@@ -163,34 +155,10 @@ class IndexPage extends Vue {
         return Math.abs(ageDate.getUTCFullYear() - 1970);
     }
 
-    isError(response: GithubUser | ErrorResponse): response is ErrorResponse {
-        return !!(response as ErrorResponse).message;
-    }
-
-    handleError(error: any) {
-        if (error.response) {
-            this.$buefy.notification.open({
-                type: "is-danger",
-                message: error.response.statusMessage
-                    ? error.response.statusMessage
-                    : error.response.message || "An error happened",
-                position: "is-top-right"
-            });
-        } else {
-            this.$buefy.notification.open({
-                type: "is-danger",
-                message: error.message ? error.message : error.toString(),
-                position: "is-top-right"
-            });
-        }
-    }
-
     async getProfile() {
         try {
-            const response = await this.$axios.$get<GithubUser | ErrorResponse>(
-                "https://api.github.com/users/KurozeroPB"
-            );
-            if (this.isError(response)) {
+            const response = await this.$axios.$get<GithubUser | ErrorResponse>("https://api.github.com/users/KurozeroPB");
+            if (this.$utils.isError(response)) {
                 return this.$buefy.notification.open({
                     type: "is-danger",
                     message: response.message,
@@ -200,18 +168,16 @@ class IndexPage extends Vue {
 
             this.user = response;
         } catch (error) {
-            this.handleError(error);
+            this.$utils.handleError(error);
         }
     }
 
     async getRepos() {
         try {
-            const response = await this.$axios.$get<ReposResponse>(
-                "https://kurozeropb.info/red"
-            );
+            const response = await this.$axios.$get<ReposResponse>("https://kurozeropb.info/red");
             if (response.repos) this.repos = response.repos;
         } catch (error) {
-            this.handleError(error);
+            this.$utils.handleError(error);
         }
     }
 }
@@ -255,29 +221,75 @@ export default IndexPage;
     }
 }
 
-.scroll {
-    cursor: pointer;
-    animation: bounce 2s infinite;
+.portfolio {
+    .about-card {
+        box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.1);
+        padding-top: 120px;
+        padding-bottom: 120px;
+        border-radius: 20px;
 
-    &:hover {
-        animation: none;
+        .avatar {
+            text-align: center;
+
+            img {
+                border-radius: 290486px;
+                border: 5px solid transparent;
+
+                &.border {
+                    border: 5px solid transparent;
+                    border-radius: 290486px;
+                    background: linear-gradient(to right, white, white), linear-gradient(45deg, var(--primary), var(--primary-lighten));
+                    background-clip: padding-box, border-box;
+                    background-origin: padding-box, border-box;
+                }
+            }
+        }
+
+        .title,
+        .subtitle {
+            background: linear-gradient(45deg, var(--primary), var(--primary-lighten));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .social-button {
+            background: linear-gradient(45deg, var(--primary), var(--primary-lighten));
+            box-shadow: 0px 4px 30px var(--primary-06);
+            transition: all 0.3s;
+
+            /* Fix icon jumping to up and to the left when scaling button */
+            backface-visibility: hidden;
+            transform: perspective(1px) translateZ(0);
+            -webkit-font-smoothing: subpixel-antialiased;
+
+            @media screen and (min-width: 768px) {
+                &:hover {
+                    transform: perspective(1px) translateZ(0) scale(1.2);
+                }
+
+                &:not(:last-child) {
+                    margin-right: 30px;
+                }
+            }
+        }
     }
-}
 
-.about-card {
-    box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.1);
-    padding-top: 120px;
-    padding-bottom: 120px;
-    border-radius: 20px;
+    .scroll {
+        text-align: center;
 
-    .avatar {
-        border-radius: 290486px;
-        border: 5px solid var(--primary);
-    }
+        &-btn {
+            cursor: pointer;
+            animation: bounce 2s infinite;
+            background: linear-gradient(45deg, var(--primary), var(--primary-lighten));
 
-    .title,
-    .subtitle {
-        color: var(--primary);
+            &:hover {
+                animation: none;
+            }
+
+            @media screen and (max-width: 1366px) {
+                visibility: hidden;
+            }
+        }
     }
 }
 </style>

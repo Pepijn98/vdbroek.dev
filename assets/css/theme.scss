@@ -3,6 +3,8 @@
 :root {
     --primary: #{$primary};
     --primary-invert: #{$primary-invert};
+    --primary-lighten: #{$primary-lighten};
+    --primary-lighten-invert: #{$primary-lighten-invert};
     --secondary: #{$secondary};
     --secondary-invert: #{$secondary-invert};
     --highlight: #{$highlight};
@@ -31,6 +33,16 @@
     --gray: #6c757d;
     --gray-dark: #343a40;
     --black: #{$black};
+
+    --primary-01: rgba(223, 45, 70, 0.1);
+    --primary-02: rgba(223, 45, 70, .2);
+    --primary-03: rgba(223, 45, 70, .3);
+    --primary-04: rgba(223, 45, 70, .4);
+    --primary-05: rgba(223, 45, 70, .5);
+    --primary-06: rgba(223, 45, 70, .6);
+    --primary-07: rgba(223, 45, 70, .7);
+    --primary-08: rgba(223, 45, 70, .8);
+    --primary-09: rgba(223, 45, 70, .9);
 }
 
 ::selection {

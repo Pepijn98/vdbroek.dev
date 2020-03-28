@@ -1,6 +1,5 @@
 interface Analytics {
-    trackingId: string;
-    accountId: string;
+    id: string;
     domain: string;
 }
 

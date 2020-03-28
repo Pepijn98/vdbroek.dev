@@ -20,10 +20,10 @@ const config: Configuration = {
             { "http-equiv": "X-UA-Compatible", property: "http-equiv", content: "IE=edge" },
             { charset: "utf-8" },
             { name: "viewport", content: "width=device-width, initial-scale=1" },
-            
+
             { hid: "author", name: "author", content: "Pepijn van den Broek" },
             { hid: "description", name: "description", content: "Personal portfolio website" },
-            
+
             { hid: "theme-color", name: "theme-color", content: "#990000" },
 
             { hid: "twitter-image-src", property: "twitter:image:src", content: `${settings.host}/static/images/logo-1200x1200.png` },
@@ -31,21 +31,21 @@ const config: Configuration = {
             { hid: "twitter-card", property: "twitter:card", content: "summary" },
             { hid: "twitter-title", property: "twitter:title", content: "Projekt RED" },
             { hid: "twitter-description", property: "twitter:description", content: "Personal portfolio website" },
-            
+
             { hid: "og-image", property: "og:image", content: `${settings.host}/static/images/logo-1200x1200.png` },
-            { hid: "og-image-secure_url", property:  "og:image:secure_url", content: `${settings.host}/static/images/logo-1200x1200.png` },
+            { hid: "og-image-secure_url", property: "og:image:secure_url", content: `${settings.host}/static/images/logo-1200x1200.png` },
             { hid: "og-site_name", property: "og:site_name", content: "Projekt RED" },
             { hid: "og-type", property: "og:type", content: "website" },
             { hid: "og-title", property: "og:title", content: "Projekt RED" },
             { hid: "og-url", property: "og:url", content: settings.host },
             { hid: "og-description", property: "og:description", content: "Personal portfolio website" },
             { hid: "og-locale", property: "og:locale", content: "en" },
-            
+
             { hid: "application-name", property: "application-name", content: "Projekt RED" },
             { hid: "fragment", property: "fragment", content: "!" },
-            
+
             { hid: "apple-mobile-web-app-capable", property: "apple-mobile-web-app-capable", content: "yes" },
-            
+
             { hid: "msapplication-TileColor", name: "msapplication-TileColor", content: "#990000" },
             { hid: "msapplication-TileImage", name: "msapplication-TileImage", content: `${settings.host}/static/icons/mstile-144x144.png` },
             { hid: "msapplication-square70x70logo", name: "msapplication-square70x70logo", content: `${settings.host}/static/icons/mstile-70x70.png` },
@@ -89,6 +89,7 @@ const config: Configuration = {
         "@/assets/css/theme.scss"
     ],
     plugins: [
+        "@/plugins/utils.ts",
         "@/plugins/components.ts"
     ],
     buildModules: [
@@ -107,9 +108,7 @@ const config: Configuration = {
         "nuxt-buefy" // Doc: https://buefy.github.io/#/documentation
     ],
     sentry: settings.sentry, // Doc: https://github.com/nuxt-community/sentry-module#readme
-    googleAnalytics: {
-        id: settings.google.analytics.trackingId
-    },
+    googleAnalytics: settings.google.analytics,
     buefy: {
         defaultIconPack: "fas"
     },
@@ -141,6 +140,6 @@ const config: Configuration = {
             }
         }
     }
-}
+};
 
 export default config;

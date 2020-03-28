@@ -8,6 +8,7 @@ module.exports = {
         "no-empty-source": null,
         "no-descending-specificity": null,
         "font-family-no-missing-generic-family-keyword": null,
-        "no-duplicate-selectors": null
+        "no-duplicate-selectors": null,
+        "property-no-unknown": null
     }
 };

@@ -1,3 +1,5 @@
+/* eslint-disable camelcase */
+
 export interface ErrorResponse {
     message: string;
     documentation_url: string;
@@ -25,4 +27,10 @@ export interface GithubUser {
     following:number;
     created_at: string;
     updated_at: string;
+}
+
+export interface RGB {
+    r: number;
+    g: number;
+    b: number;
 }
