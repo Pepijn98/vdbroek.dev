@@ -8,7 +8,7 @@
 
                 <div class="profile-card__content">
                     <div class="profile-card__name">
-                        <a :style="{color: hexColor}" :href="repo.url" target="_blank">{{ repo.name.replace("-", " ") }}</a>
+                        <a :style="{color: hexColor}" :href="repo.url" target="_blank">{{ repo.name }}</a>
                     </div>
                     <div class="profile-card__txt">
                         <b>{{ repo.description }}</b>
@@ -50,14 +50,30 @@
                         </div>
 
                         <div class="profile-card-info__item">
-                            <div class="profile-card-info__title">{{ repo.issues ? repo.issues.totalCount : 0 }}</div>
-                            <div class="profile-card-info__txt">Issues</div>
+                            <div class="profile-card-info__title">
+                                {{ repo.issuesOpen ? repo.issuesOpen.totalCount : 0 }}/{{ repo.issuesClosed ? repo.issuesClosed.totalCount : 0 }}
+                            </div>
+                            <div class="profile-card-info__txt">Open/Closed Issues</div>
                         </div>
                     </div>
 
-                    <div v-if="fundingLinks && fundingLinks.length > 0" class="profile-card-social">
+                    <div v-if="(repo.fundingLinks && repo.fundingLinks.length > 0) || !!repo.homepageUrl" class="profile-card-social">
                         <b-button
-                            v-for="(link, i) in fundingLinks"
+                            v-if="!!repo.homepageUrl"
+                            :href="repo.homepageUrl"
+                            :style="{
+                                color: `${$utils.textColor(hexColor)} !important`,
+                                boxShadow: `0px 4px 30px ${rgbColor}`,
+                                background: `linear-gradient(45deg, ${hexColor}, ${$utils.changeLuminosity(hexColor, 50)})`
+                            }"
+                            icon-left="home"
+                            target="_blank"
+                            class="profile-card-social__item"
+                            tag="a"
+                            type="is-primary"
+                            rounded />
+                        <b-button
+                            v-for="(link, i) in repo.fundingLinks"
                             :key="i"
                             :icon-pack="iconPack(link)"
                             :icon-left="icon(link)"
@@ -102,15 +118,6 @@ import { Repo, FundingLink } from "~/interfaces/repos.types";
 
 @Component
 class RepoCard extends Vue {
-    fundingIcon: {[x: string]: string} = {
-        GITHUB: "github",
-        PATREON: "patreon"
-    };
-
-    get fundingLinks() {
-        return this.repo.fundingLinks.filter((link) => !link.url.includes("github"));
-    }
-
     get langImage() {
         return `/static/images/languages/${this.repo.primaryLanguage ? this.repo.primaryLanguage.name === "C#" ? "csharp" : this.repo.primaryLanguage.name.toLowerCase() : "github"}.png`;
     }
@@ -144,13 +151,13 @@ class RepoCard extends Vue {
     @Prop({ type: Object, required: true }) repository!: Repo;
 
     iconPack(link: FundingLink): string {
-        if (this.fundingIcon[link.platform]) return "fab";
+        if (link.platform === "PATREON") return "fab";
         if (link.url.includes("paypal")) return "fab";
         return "fas";
     }
 
     icon(link: FundingLink): string {
-        if (this.fundingIcon[link.platform]) return this.fundingIcon[link.platform];
+        if (link.platform === "PATREON") return "patreon";
         if (link.url.includes("paypal")) return "paypal";
         return "external-link-alt";
     }

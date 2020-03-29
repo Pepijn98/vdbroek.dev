@@ -7,7 +7,11 @@ export interface FundingLink {
     url: string;
 }
 
-export interface Issues {
+export interface IssuesOpen {
+    totalCount: number;
+}
+
+export interface IssuesClosed {
     totalCount: number;
 }
 
@@ -30,7 +34,8 @@ export interface Repo {
     homepageUrl: string | null;
     stargazers: Stargazers;
     fundingLinks: FundingLink[];
-    issues: Issues;
+    issuesOpen: IssuesOpen;
+    issuesClosed: IssuesClosed;
     primaryLanguage: PrimaryLanguage;
     topics: Topic[];
 }

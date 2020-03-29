@@ -174,7 +174,11 @@ class IndexPage extends Vue {
 
     async getRepos() {
         try {
-            const response = await this.$axios.$get<ReposResponse>("https://kurozeropb.info/red");
+            const response = await this.$axios.$get<ReposResponse>("https://kurozeropb.info/red", {
+                headers: {
+                    "Authorization": process.env.API_KEY
+                }
+            });
             if (response.repos) this.repos = response.repos;
         } catch (error) {
             this.$utils.handleError(error);

@@ -1,4 +1,6 @@
 import { Plugin } from "@nuxt/types";
+import { AxiosError } from "axios";
+import { NotificationProgrammatic as Notification } from "buefy";
 import { RGB, ErrorResponse, GithubUser } from "~/interfaces/types";
 
 const plugin: Plugin = ({ app }, inject) => {
@@ -56,15 +58,15 @@ const plugin: Plugin = ({ app }, inject) => {
         isError(response: GithubUser | ErrorResponse): response is ErrorResponse {
             return !!(response as ErrorResponse).message;
         },
-        handleError(error: any): void {
+        handleError(error: AxiosError): void {
             if (error.response) {
-                app.$buefy.notification.open({
+                Notification.open({
                     type: "is-danger",
-                    message: error.response.statusMessage ? error.response.statusMessage : error.response.message || "An error happened",
+                    message: error.response.data.message ? error.response.data.message : error.response.data.statusMessage || "An error happened",
                     position: "is-top-right"
                 });
             } else {
-                app.$buefy.notification.open({
+                Notification.open({
                     type: "is-danger",
                     message: error.message ? error.message : error.toString(),
                     position: "is-top-right"

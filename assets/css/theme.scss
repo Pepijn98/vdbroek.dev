@@ -48,6 +48,7 @@
 ::selection {
     background-color: var(--primary);
     color: white;
+    -webkit-text-fill-color: white;
 }
 
 html {
@@ -69,7 +70,11 @@ body {
     height: 100vh;
 }
 
-.button.is-rounded {
-    padding-left: .75em;
-    padding-right: .75em;
+.button {
+    border: 0 solid;
+
+    &.is-rounded {
+        padding-left: .80em;
+        padding-right: .80em;
+    }
 }
