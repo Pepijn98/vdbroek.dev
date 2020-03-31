@@ -1,5 +1,8 @@
+import dotenv from "dotenv";
 import Settings from "~/interfaces/settings.types";
 import pkg from "./package.json";
+
+dotenv.config();
 
 const env = process.env.NODE_ENV || "development";
 
@@ -11,7 +14,7 @@ const settings: Settings = {
         test: env === "development",
         analytics: {
             id: process.env.TRACKING_ID || "",
-            domain: env === "development" ? "http://localhost:3000" : "https://vdbroek.dev"
+            domain: env === "production" ? "https://vdbroek.dev" : "http://localhost:3000"
         }
     },
     sentry: {
