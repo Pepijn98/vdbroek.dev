@@ -5,6 +5,7 @@ import { RGB, ErrorResponse, GithubUser } from "~/interfaces/types";
 
 const plugin: Plugin = ({ app }, inject) => {
     inject("utils", {
+        hasWebpSupport: true,
         textColor(val: string | RGB): string {
             let color!: RGB;
             if (typeof val === "string") color = app.$utils.hexToRGB(val, 1, false) as RGB;
@@ -72,6 +73,26 @@ const plugin: Plugin = ({ app }, inject) => {
                     position: "is-top-right"
                 });
             }
+        },
+        supportsWebp(feature: "lossy" | "lossless" | "alpha" | "animation"): Promise<{ feature: string, isSupported: boolean }> {
+            const images: {[x: string]: string} = {
+                lossy: "data:image/webp;base64,UklGRiIAAABXRUJQVlA4IBYAAAAwAQCdASoBAAEADsD+JaQAA3AAAAAA",
+                lossless: "data:image/webp;base64,UklGRhoAAABXRUJQVlA4TA0AAAAvAAAAEAcQERGIiP4HAA==",
+                alpha: "data:image/webp;base64,UklGRlIAAABXRUJQVlA4WAoAAAASAAAAAAAAAAAAQU5JTQYAAAD/////AABBTk1GJgAAAAAAAAAAAAAAAAAAAGQAAABWUDhMDQAAAC8AAAAQBxAREYiI/gcA",
+                animation: "data:image/webp;base64,UklGRlIAAABXRUJQVlA4WAoAAAASAAAAAAAAAAAAQU5JTQYAAAD/////AABBTk1GJgAAAAAAAAAAAAAAAAAAAGQAAABWUDhMDQAAAC8AAAAQBxAREYiI/gcA"
+            };
+
+            return new Promise((resolve, reject) => {
+                const img = new Image();
+                img.onload = () => {
+                    const isSupported = (img.width > 0) && (img.height > 0);
+                    resolve({ feature, isSupported });
+                };
+                img.onerror = () => {
+                    reject("Error while checking for webp support");
+                };
+                img.src = images[feature];
+            });
         }
     });
 };

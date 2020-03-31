@@ -5,7 +5,7 @@
                 <div class="container">
                     <div class="about-card columns is-centered">
                         <div class="avatar column is-3">
-                            <img class="border" height="300px" width="300px" :src="user.avatar_url">
+                            <img draggable="false" class="border" height="300px" width="300px" :src="user.avatar_url">
                         </div>
                         <div class="about column is-6">
                             <h1 class="title">{{ user.name }} (KurozeroPB)</h1>
@@ -137,6 +137,7 @@ class IndexPage extends Vue {
     repos: Repo[] = [];
 
     async beforeMount() {
+        await this.checkWebpSupport();
         await this.getProfile();
         await this.getRepos();
     }
@@ -153,6 +154,20 @@ class IndexPage extends Vue {
         const ageDiff = Date.now() - birthday.getTime();
         const ageDate = new Date(ageDiff);
         return Math.abs(ageDate.getUTCFullYear() - 1970);
+    }
+
+    async checkWebpSupport() {
+        try {
+            const lossless = await this.$utils.supportsWebp("lossless");
+            if (!lossless.isSupported) {
+                this.$utils.hasWebpSupport = false;
+            }
+        } catch (error) {
+            this.$utils.hasWebpSupport = false;
+            if (process.env.NODE_ENV === "development") {
+                this.$utils.handleError(error);
+            }
+        }
     }
 
     async getProfile() {

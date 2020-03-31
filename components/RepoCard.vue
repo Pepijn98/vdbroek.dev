@@ -3,7 +3,7 @@
         <div class="wrapper">
             <div class="profile-card">
                 <div class="profile-card__image" :style="{boxShadow: `0px 5px 50px 0px ${hexColor}, 0px 0px 0px 7px ${rgbColor}`}">
-                    <img :src="langImage" alt="profile card">
+                    <img draggable="false" :src="image" alt="profile card">
                 </div>
 
                 <div class="profile-card__content">
@@ -118,8 +118,8 @@ import { Repo, FundingLink } from "~/interfaces/repos.types";
 
 @Component
 class RepoCard extends Vue {
-    get langImage() {
-        return `/static/images/languages/${this.repo.primaryLanguage ? this.repo.primaryLanguage.name === "C#" ? "csharp" : this.repo.primaryLanguage.name.toLowerCase() : "github"}.png`;
+    get image() {
+        return `/static/images/languages/${this.repo.primaryLanguage ? this.repo.primaryLanguage.name === "C#" ? "csharp" : this.repo.primaryLanguage.name.toLowerCase() : "github"}.${this.$utils.hasWebpSupport ? "webp" : "png"}`;
     }
 
     get hexColor() {
