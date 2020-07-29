@@ -8,9 +8,10 @@
                             <img draggable="false" class="border" height="300px" width="300px" :src="user.avatar_url">
                         </div>
                         <div class="about column is-6">
-                            <h1 class="title">{{ user.name }} (KurozeroPB)</h1>
+                            <h1 class="title">{{ user.name }}</h1>
                             <h2 class="subtitle">
-                                Hello, welcome to this website.<br>
+                                Hello, welcome to my personal website.<br>
+                                Here I'll be telling a little bit about myself and showcase some pinned repos from github.<br><br>
                                 I'm a fullstack developer based in the Netherlands.<br>
                                 I'm {{ calculateAge() }} years old and have been a fullstack developer for 5 years!<br>
                                 I've contibuted and made different projects like Jeanne (Discord Bot), Kitsu C# library and CustomRPC to set rich presence on discord. Scroll down to see my pinned repositiries!
@@ -22,7 +23,7 @@
                                     <b-button
                                         class="level-item social-button"
                                         tag="a"
-                                        href="https://github.com/kurozeropb"
+                                        href="https://github.com/pepijn98"
                                         target="_blank"
                                         type="is-primary"
                                         size="is-medium"
@@ -62,7 +63,7 @@
                                     <b-button
                                         class="level-item social-button"
                                         tag="a"
-                                        href="https://www.linkedin.com/in/pepijn-van-den-broek-84a94b18a/"
+                                        href="https://www.linkedin.com/in/pepijn-van-den-broek/"
                                         target="_blank"
                                         type="is-primary"
                                         size="is-medium"
@@ -172,7 +173,7 @@ class IndexPage extends Vue {
 
     async getProfile() {
         try {
-            const response = await this.$axios.$get<GithubUser | ErrorResponse>("https://api.github.com/users/KurozeroPB");
+            const response = await this.$axios.$get<GithubUser | ErrorResponse>("https://api.github.com/users/Pepijn98");
             if (this.$utils.isError(response)) {
                 return this.$buefy.notification.open({
                     type: "is-danger",

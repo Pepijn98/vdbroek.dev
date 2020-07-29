@@ -1,5 +1,4 @@
 import { Configuration } from "@nuxt/types";
-import StyleLintPlugin from "stylelint-webpack-plugin";
 import settings from "./settings";
 
 const config: Configuration = {
@@ -12,7 +11,7 @@ const config: Configuration = {
         prefetchLinks: true
     },
     head: {
-        title: "Projekt RED",
+        title: "Pepijn van den Broek",
         htmlAttrs: {
             lang: "en"
         },
@@ -109,6 +108,10 @@ const config: Configuration = {
     ],
     sentry: settings.sentry, // Doc: https://github.com/nuxt-community/sentry-module#readme
     googleAnalytics: settings.google.analytics,
+    stylelint: {
+        files: ["**/*.{vue,css,less,scss,sass}"],
+        syntax: "scss"
+    },
     buefy: {
         defaultIconPack: "fas"
     },
@@ -124,9 +127,6 @@ const config: Configuration = {
     },
     axios: {}, // Doc: https://axios.nuxtjs.org/options
     build: {
-        plugins: [
-            new StyleLintPlugin({ files: ["**/*.{vue,css,less,scss,sass}"] })
-        ],
         extend(config, { isDev, isClient }) {
             if (isDev && isClient) {
                 if (config.module) {
