@@ -1,69 +1,70 @@
 {
-  "name": "projekt-red",
-  "version": "1.0.0",
-  "description": "Personal portfolio type of website",
-  "license": "MIT",
-  "private": true,
-  "homepage": "https://github.com/KurozeroPB/projekt-red#readme",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/KurozeroPB/projekt-red.git"
-  },
-  "bugs": {
-    "url": "https://github.com/KurozeroPB/projekt-red/issues"
-  },
-  "author": {
-    "email": "root@kurozeropb.info",
-    "name": "Pepijn van den Broek",
-    "url": "https://github.com/KurozeroPB"
-  },
-  "scripts": {
-    "test": "cross-env NODE_ENV=development nuxt-ts",
-    "dev": "cross-env NODE_ENV=development nuxt-ts",
-    "build": "nuxt-ts build",
-    "start": "cross-env NODE_ENV=production nuxt-ts start",
-    "generate": "cross-env NODE_ENV=production nuxt-ts generate",
-    "reinstall": "reinstall",
-    "lint": "eslint --ext .ts,.js,.vue .",
-    "lint:fix": "eslint --fix --ext .ts,.js,.vue .",
-    "stylelint": "stylelint '**/*.vue' --syntax scss",
-    "stylelint:fix": "stylelint --fix '**/*.vue' --syntax scss"
-  },
-  "dependencies": {
-    "@nuxt/typescript-runtime": "^0.4.0",
-    "@nuxtjs/axios": "^5.9.5",
-    "@nuxtjs/component-cache": "^1.1.5",
-    "@nuxtjs/dotenv": "^1.4.0",
-    "@nuxtjs/google-analytics": "^2.2.3",
-    "@nuxtjs/pwa": "^3.0.0-0",
-    "@nuxtjs/sentry": "^4.0.0",
-    "@nuxtjs/sitemap": "^2.0.1",
-    "chalk": "^3.0.0",
-    "cross-env": "^7.0.2",
-    "node-sass": "^4.13.1",
-    "nuxt": "^2.12.0",
-    "nuxt-buefy": "^0.3.24",
-    "sass-loader": "^8.0.2"
-  },
-  "devDependencies": {
-    "@nuxt/typescript-build": "^0.6.0",
-    "@nuxtjs/eslint-config": "^2.0.2",
-    "@nuxtjs/eslint-config-typescript": "^1.0.2",
-    "@nuxtjs/eslint-module": "^1.1.0",
-    "@nuxtjs/stylelint-module": "^3.2.2",
-    "@types/node": "^12.12.31",
-    "@types/stylelint-webpack-plugin": "^0.1.5",
-    "babel-eslint": "^10.1.0",
-    "eslint": "^6.8.0",
-    "eslint-plugin-nuxt": "^0.5.2",
-    "npm-reinstall": "^3.1.0",
-    "stylelint": "^13.2.1",
-    "stylelint-config-recommended": "^3.0.0",
-    "stylelint-config-recommended-scss": "^4.2.0",
-    "stylelint-processor-html": "^1.0.0",
-    "stylelint-scss": "^3.16.0",
-    "stylelint-webpack-plugin": "^1.2.3",
-    "typescript": "^3.8.3",
-    "vue-property-decorator": "^8.4.1"
-  }
+    "name": "projekt-red",
+    "version": "1.0.0",
+    "description": "Personal portfolio type of website",
+    "license": "MIT",
+    "private": true,
+    "homepage": "https://github.com/Pepijn98/projekt-red#readme",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Pepijn98/projekt-red.git"
+    },
+    "bugs": {
+        "url": "https://github.com/Pepijn98/projekt-red/issues"
+    },
+    "author": {
+        "email": "root@kurozeropb.info",
+        "name": "Pepijn van den Broek",
+        "url": "https://github.com/Pepijn98"
+    },
+    "scripts": {
+        "test": "cross-env NODE_ENV=development nuxt-ts",
+        "dev": "cross-env NODE_ENV=development nuxt-ts",
+        "build": "nuxt-ts build",
+        "start": "cross-env NODE_ENV=production nuxt-ts start",
+        "generate": "cross-env NODE_ENV=production nuxt-ts generate",
+        "clean": "rm -rf ./node_modules ./package-lock.json",
+        "lint": "eslint --ext .ts,.js,.vue .",
+        "lint:fix": "eslint --fix --ext .ts,.js,.vue .",
+        "stylelint": "stylelint '**/*.vue' --syntax scss",
+        "stylelint:fix": "stylelint --fix '**/*.vue' --syntax scss"
+    },
+    "dependencies": {
+        "@nuxt/types": "^2.14.0",
+        "@nuxt/typescript-runtime": "^1.0.0",
+        "@nuxtjs/axios": "^5.12.0",
+        "@nuxtjs/component-cache": "^1.1.6",
+        "@nuxtjs/dotenv": "^1.4.1",
+        "@nuxtjs/google-analytics": "^2.4.0",
+        "@nuxtjs/pwa": "3.0.0-beta.20",
+        "@nuxtjs/sentry": "^4.3.1",
+        "@nuxtjs/sitemap": "^2.4.0",
+        "chalk": "^4.1.0",
+        "cross-env": "^7.0.2",
+        "node-sass": "^4.14.1",
+        "nuxt": "^2.14.0",
+        "nuxt-buefy": "^0.3.31",
+        "sass-loader": "^9.0.2",
+        "vue-class-component": "^7.2.5"
+    },
+    "devDependencies": {
+        "@nuxt/typescript-build": "^2.0.2",
+        "@nuxtjs/eslint-config": "^3.1.0",
+        "@nuxtjs/eslint-config-typescript": "^3.0.0",
+        "@nuxtjs/eslint-module": "^2.0.0",
+        "@nuxtjs/stylelint-module": "^4.0.0",
+        "@types/node": "^14.0.27",
+        "@types/stylelint-webpack-plugin": "^2.1.0",
+        "babel-eslint": "^10.1.0",
+        "eslint": "^7.5.0",
+        "eslint-plugin-nuxt": "^1.0.0",
+        "stylelint": "^13.6.1",
+        "stylelint-config-recommended": "^3.0.0",
+        "stylelint-config-recommended-scss": "^4.2.0",
+        "stylelint-processor-html": "^1.0.0",
+        "stylelint-scss": "^3.18.0",
+        "stylelint-webpack-plugin": "^2.1.0",
+        "typescript": "^3.9.7",
+        "vue-property-decorator": "^9.0.0"
+    }
 }
