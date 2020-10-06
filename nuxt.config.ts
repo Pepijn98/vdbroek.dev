@@ -1,8 +1,8 @@
-import { Configuration } from "@nuxt/types";
+import { NuxtConfig } from "@nuxt/types";
 import settings from "./settings";
 
-const config: Configuration = {
-    mode: "spa",
+const config: NuxtConfig = {
+    ssr: false,
     generate: {
         fallback: "404.shtml"
     },
