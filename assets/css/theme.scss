@@ -74,7 +74,7 @@ body {
     border: 0 solid;
 
     &.is-rounded {
-        padding-left: .80em;
-        padding-right: .80em;
+        padding-left: calc(1em + 0.05em);
+        padding-right: calc(1em + 0.05em);
     }
 }
