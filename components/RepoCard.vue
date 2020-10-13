@@ -119,7 +119,7 @@ import { Repo, FundingLink } from "~/interfaces/repos.types";
 @Component
 class RepoCard extends Vue {
     get image() {
-        return `/static/images/languages/${this.repo.primaryLanguage ? this.repo.primaryLanguage.name === "C#" ? "csharp" : this.repo.primaryLanguage.name.toLowerCase() : "github"}.${this.$utils.hasWebpSupport ? "webp" : "png"}`;
+        return `/images/languages/${this.repo.primaryLanguage ? this.repo.primaryLanguage.name === "C#" ? "csharp" : this.repo.primaryLanguage.name.toLowerCase() : "github"}.${this.$utils.hasWebpSupport ? "webp" : "png"}`;
     }
 
     get hexColor() {
