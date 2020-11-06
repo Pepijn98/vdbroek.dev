@@ -74,6 +74,7 @@ const config: NuxtConfig = {
             { rel: "fluid-icon", href: "/site-icons/android-chrome-512x512.png", title: "Projekt RED" },
 
             // External links
+            { rel: "stylesheet", href: "https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css" },
             { rel: "stylesheet", href: "https://use.fontawesome.com/releases/v5.12.1/css/all.css", integrity: "sha384-v8BU367qNbs/aIZIxuivaU55N5GPF89WBerHoGA4QTcbUjYiLQtKdrfXnqAcXyTv", crossorigin: "anonymous" }
         ],
         script: [

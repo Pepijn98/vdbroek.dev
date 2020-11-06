@@ -45,4 +45,4 @@ module.exports = {
         "semi-style": ["error", "last"],
         "space-before-function-paren": "off"
     }
-}
+};

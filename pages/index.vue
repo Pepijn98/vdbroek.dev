@@ -1,6 +1,6 @@
 <template>
     <div class="portfolio">
-        <section class="hero is-fullheight">
+        <section class="hero is-fullheight animated bounceInLeft slow">
             <div class="hero-body">
                 <div class="container">
                     <div class="about-card columns is-centered">
@@ -13,9 +13,9 @@
                                 Hello, welcome to my personal website.<br>
                                 Here I'll be telling a little bit about myself and showcase some pinned repos from github.<br><br>
                                 I'm a fullstack developer based in the Netherlands.<br>
-                                I'm {{ calculateAge() }} years old and have been a fullstack developer for 5 years!<br>
+                                I'm {{ calculateAge() }} years old and have been a fullstack developer for {{ calculateActivity() }} years!<br>
                                 I've contibuted and made different projects like Jeanne (Discord Bot), Kitsu C# library and CustomRPC to set rich presence on discord. Scroll down to see my pinned repositiries!
-                                Everything I do is to improve my programming skills in several languages and keep learning new things. I mainly enjoy using JavaScript/TypeScript (NodeJS) and Kotlin but I've also used Swift, Rust, Golang and Python.
+                                Everything I do is to improve my programming skills in several languages and keep learning new things. I mainly enjoy using TypeScript (NodeJS) and Kotlin but I've also used Swift, Rust, Golang and Python.
                                 If you're interested in seeing what I make scroll down to see my pinned repositiries or go to my github page to see all my repositiries.
                             </h2>
                             <div class="level">
@@ -155,6 +155,13 @@ class IndexPage extends Vue {
         const ageDiff = Date.now() - birthday.getTime();
         const ageDate = new Date(ageDiff);
         return Math.abs(ageDate.getUTCFullYear() - 1970);
+    }
+
+    calculateActivity() {
+        const start = new Date("2015-01-01");
+        const diff = Date.now() - start.getTime();
+        const date = new Date(diff);
+        return Math.abs(date.getUTCFullYear() - 1970);
     }
 
     async checkWebpSupport() {
