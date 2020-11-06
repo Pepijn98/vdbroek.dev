@@ -43,7 +43,7 @@
                                     <b-button
                                         class="level-item social-button"
                                         tag="a"
-                                        href="https://twitter.com/pvdbroek98"
+                                        href="https://twitter.com/AsyncSenpai"
                                         target="_blank"
                                         type="is-primary"
                                         size="is-medium"
