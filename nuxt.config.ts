@@ -3,6 +3,7 @@ import settings from "./settings";
 
 const config: NuxtConfig = {
     ssr: false,
+    target: "static",
     generate: {
         fallback: "404.shtml"
     },

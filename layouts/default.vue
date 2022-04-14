@@ -1,6 +1,6 @@
 <template>
     <div>
-        <a class="ribbon" href="https://github.com/Pepijn98/Projekt-RED" target="_blank">
+        <a class="ribbon" href="https://github.com/Pepijn98/vdbroek.dev" target="_blank">
             <b-icon pack="fab" icon="github" />
             View source
         </a>

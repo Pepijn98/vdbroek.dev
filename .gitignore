@@ -108,3 +108,9 @@ sw.js
 
 #sentry
 .sentryclirc
+
+# do not push public files to github
+static/apps/
+static/nekos/
+static/pickapp/
+static/scope/

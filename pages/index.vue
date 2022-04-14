@@ -33,17 +33,18 @@
                                     <b-button
                                         class="level-item social-button"
                                         tag="a"
-                                        href="https://discord.gg/p895czC"
+                                        title="pepijn98#1561"
                                         target="_blank"
                                         type="is-primary"
                                         size="is-medium"
                                         icon-pack="fab"
                                         icon-left="discord"
-                                        rounded />
+                                        rounded
+                                        @click="copyToClipboard()" />
                                     <b-button
                                         class="level-item social-button"
                                         tag="a"
-                                        href="https://twitter.com/AsyncSenpai"
+                                        href="https://twitter.com/vdbroek98"
                                         target="_blank"
                                         type="is-primary"
                                         size="is-medium"
@@ -69,16 +70,6 @@
                                         size="is-medium"
                                         icon-pack="fab"
                                         icon-left="linkedin"
-                                        rounded />
-                                    <b-button
-                                        class="level-item social-button"
-                                        tag="a"
-                                        href="https://keybase.io/kurozero"
-                                        target="_blank"
-                                        type="is-primary"
-                                        size="is-medium"
-                                        icon-pack="fab"
-                                        icon-left="keybase"
                                         rounded />
                                     <b-button
                                         class="level-item social-button"
@@ -143,6 +134,20 @@ class IndexPage extends Vue {
         await this.getRepos();
     }
 
+    copyToClipboard() {
+        navigator.clipboard.writeText("pepijn98#1561")
+            .then(() => {
+                this.$buefy.notification.open({
+                    type: "is-info",
+                    message: "Text copied to clipboard...",
+                    position: "is-top-right"
+                });
+            })
+            .catch((err) => {
+                this.$utils.handleError(err);
+            });
+    }
+
     scroll() {
         const element = document.querySelector("#repos");
         if (element) {
@@ -197,7 +202,7 @@ class IndexPage extends Vue {
 
     async getRepos() {
         try {
-            const response = await this.$axios.$get<ReposResponse>("https://kurozeropb.info/api/github/pinned", {
+            const response = await this.$axios.$get<ReposResponse>("https://api.vdbroek.dev/github/pinned", {
                 headers: {
                     "Authorization": process.env.API_KEY
                 }
@@ -275,6 +280,7 @@ export default IndexPage;
         .title,
         .subtitle {
             background: linear-gradient(45deg, var(--primary), var(--primary-lighten));
+            background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
