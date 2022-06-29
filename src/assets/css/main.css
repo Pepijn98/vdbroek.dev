@@ -1,0 +1,11 @@
+* {
+    font-family: "Ubuntu", "Roboto", sans-serif;
+}
+
+.animate-icon i {
+    transition: 0.4s;
+}
+
+.rotate {
+    transform: rotate(180deg);
+}

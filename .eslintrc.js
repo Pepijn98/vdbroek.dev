@@ -57,6 +57,10 @@ module.exports = {
             "always"
         ],
         "curly": "off",
+        "comma-dangle": [
+            "error",
+            "never"
+        ],
         "indent": [
             "error",
             4,

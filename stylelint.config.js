@@ -4,7 +4,10 @@ module.exports = {
     processors: ["stylelint-processor-html"],
     extends: "stylelint-config-recommended-scss",
     rules: {
-        "indentation": [4, { baseIndentLevel: 4 }],
+        "indentation": [
+            4,
+            { baseIndentLevel: 4 }
+        ],
         "no-empty-source": null,
         "no-descending-specificity": null,
         "font-family-no-missing-generic-family-keyword": null,
