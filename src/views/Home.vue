@@ -6,8 +6,8 @@
             :icon="switchIcon"
             :ripple="false"
             @click="toggleTheme" />
-        <svg class="background-wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-            <path fill-opacity="1" d="M0,128L80,138.7C160,149,320,171,480,202.7C640,235,800,277,960,282.7C1120,288,1280,256,1360,240L1440,224L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z" />
+        <svg class="background-wave" viewBox="0 0 500 500" preserveAspectRatio="xMinYMin meet">
+            <path d="M0,100 C150,200 350,0 500,100 L500,00 L0,0 Z" />
         </svg>
         <section class="about hero is-fullheight">
             <v-card
@@ -31,9 +31,9 @@
                             Here I'll be telling a little bit about myself and showcase some pinned repos from github.<br><br>
                             I'm a fullstack developer based in the Netherlands.<br>
                             I'm {{ getAge() }} years old and have been a fullstack developer for {{ getCodingSince() }} years!<br>
-                            I've contibuted and made different projects like Jeanne (Discord Bot), Kitsu C# library and CustomRPC to set rich presence on discord. Scroll down to see my pinned repositiries!
+                            I've contibuted and made different projects like Jeanne (Discord Bot), Kitsu C# library and CustomRPC to set rich presence on discord. Scroll down to see my pinned repositories!
                             Everything I do is to improve my programming skills in several languages and keep learning new things. I mainly enjoy using TypeScript (NodeJS) and Kotlin but I've also used Swift, Rust, Golang and Python.
-                            If you're interested in seeing what I make scroll down to see my pinned repositiries or go to my github page to see all my repositiries.
+                            If you're interested in seeing what I make scroll down to see my pinned repositories or go to my github page to see all my repositories.
                         </v-card-text>
                     </div>
                 </div>
@@ -41,38 +41,49 @@
                     <v-btn
                         class="ml-2"
                         icon="fab fa-github"
+                        href="https://github.com/pepijn98"
+                        target="_blank"
                         variant="text" />
                     <v-btn
                         class="ml-2"
                         icon="fab fa-discord"
+                        title="pepijn98#1561"
+                        href="https://discord.com/users/964236379817136230"
+                        target="_blank"
                         variant="text" />
                     <v-btn
                         class="ml-2"
                         icon="fab fa-twitter"
+                        href="https://twitter.com/vdbroek98"
+                        target="_blank"
                         variant="text" />
                     <v-btn
                         class="ml-2"
                         icon="fab fa-facebook"
+                        href="https://www.facebook.com/pepijnvdbroek"
+                        target="_blank"
                         variant="text" />
                     <v-btn
                         class="ml-2"
                         icon="fab fa-linkedin"
+                        href="https://www.linkedin.com/in/pepijn-van-den-broek/"
+                        target="_blank"
                         variant="text" />
                     <v-btn
                         class="ml-2"
                         icon="fab fa-google-play"
+                        href="https://play.google.com/store/apps/dev?id=4732354838030747081"
+                        target="_blank"
                         variant="text" />
                 </v-card-actions>
             </v-card>
         </section>
         <div class="projects__wrap" :style="`width: ${width}`">
             <section class="projects hero is-fullheight">
-                <ProjectCard />
-                <ProjectCard />
-                <ProjectCard />
-                <ProjectCard />
-                <ProjectCard />
-                <ProjectCard />
+                <ProjectCard
+                    v-for="repo in repos"
+                    :key="repo.name"
+                    :repo="repo" />
             </section>
         </div>
         <v-btn
@@ -84,16 +95,20 @@
 </template>
 
 <script setup lang="ts">
-import { inject, ref, onMounted, onUnmounted, computed } from "vue";
+import { inject, ref, onBeforeMount, onMounted, onUnmounted, computed } from "vue";
 import { useTheme, useDisplay } from "vuetify";
+import { GithubUser, Repo } from "~/types/github";
 import Vue3SmoothScroll from "vue3-smooth-scroll";
-import ProjectCard from "~/components/TestProjectCard.vue";
+import ProjectCard from "~/components/ProjectCard.vue";
 
 let isScrolling = false;
 let offset = 0;
 
 const { name } = useDisplay();
 const theme = useTheme();
+
+const user = ref<GithubUser>();
+const repos = ref<Repo[]>();
 
 const scrollY = ref(0);
 
@@ -158,7 +173,7 @@ function scroll() {
     const icon = document.querySelector(".scroll i");
     if (icon) {
         if (scrollY.value < 400) {
-            const element = document.querySelector<HTMLDivElement>(".projects");
+            const element = document.querySelector<HTMLElement>(".projects");
             if (element) {
                 offset = element.offsetTop;
 
@@ -188,11 +203,28 @@ function getCodingSince() {
     return Math.abs(date.getUTCFullYear() - 1970);
 }
 
+onBeforeMount(async () => {
+    const response = await fetch("https://api.github.com/users/Pepijn98");
+    user.value = await response.json();
+
+    if (import.meta.env.MODE === "production") {
+        const response2 = await fetch("https://api.vdbroek.dev/github/pinned", {
+            headers: {
+                "Authorization": import.meta.env.VITE_API_KEY || ""
+            }
+        });
+        repos.value = (await response2.json()).repos;
+    } else {
+        repos.value = (await import("~/assets/example-data.json")).repos;
+    }
+});
+
 onMounted(() => window.addEventListener("scroll", onScrollUpdate));
+
 onUnmounted(() => window.removeEventListener("scroll", onScrollUpdate));
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .theme-switch {
     position: fixed;
     z-index: 1;
@@ -215,10 +247,6 @@ onUnmounted(() => window.removeEventListener("scroll", onScrollUpdate));
     align-items: center;
 }
 
-.projects__wrap {
-    margin: 50px auto;
-}
-
 .projects {
     display: flex;
     flex-flow: row wrap;
@@ -226,21 +254,15 @@ onUnmounted(() => window.removeEventListener("scroll", onScrollUpdate));
     justify-content: center;
     align-items: center;
     gap: 50px;
-}
 
-.projects .project {
-    flex: 0 1;
-}
+    .project {
+        flex: 0 1;
+    }
 
-/* .projects {
-    width: 100%;
-    margin: 25px 0 25px 0;
-    display: flex;
-    grid-template-columns: auto auto;
-    grid-template-rows: auto auto;
-    column-gap: 25px;
-    row-gap: 25px;
-} */
+    &__wrap {
+        margin: 50px auto;
+    }
+}
 
 .scroll {
     position: fixed;
