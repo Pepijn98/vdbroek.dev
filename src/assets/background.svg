@@ -1,0 +1,25 @@
+<svg id="visual" viewBox="0 0 1920 1080" width="1920" height="1080" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
+    <g>
+        <g transform="translate(231 845)">
+            <path d="M0 -145.7L126.1 -72.8L126.1 72.8L0 145.7L-126.1 72.8L-126.1 -72.8Z" fill="#F5CA7B"></path>
+        </g>
+        <g transform="translate(1316 348)">
+            <path d="M0 -77L66.7 -38.5L66.7 38.5L0 77L-66.7 38.5L-66.7 -38.5Z" fill="#F5CA7B"></path>
+        </g>
+        <g transform="translate(623 818)">
+            <path d="M0 -75L65 -37.5L65 37.5L0 75L-65 37.5L-65 -37.5Z" fill="#F5CA7B"></path>
+        </g>
+        <g transform="translate(161 129)">
+            <path d="M0 -91L78.8 -45.5L78.8 45.5L0 91L-78.8 45.5L-78.8 -45.5Z" fill="#F5CA7B"></path>
+        </g>
+        <g transform="translate(1859 655)">
+            <path d="M0 -124L107.4 -62L107.4 62L0 124L-107.4 62L-107.4 -62Z" fill="#F5CA7B"></path>
+        </g>
+        <g transform="translate(961 302)">
+            <path d="M0 -143L123.8 -71.5L123.8 71.5L0 143L-123.8 71.5L-123.8 -71.5Z" fill="#F5CA7B"></path>
+        </g>
+        <g transform="translate(1066 867)">
+            <path d="M0 -97L84 -48.5L84 48.5L0 97L-84 48.5L-84 -48.5Z" fill="#F5CA7B"></path>
+        </g>
+    </g>
+</svg>
