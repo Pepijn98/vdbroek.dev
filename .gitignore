@@ -110,7 +110,8 @@ sw.js
 .sentryclirc
 
 # do not push public files to github
-static/apps/
-static/nekos/
-static/pickapp/
-static/scope/
+public/apps/
+public/nekos/
+public/pickapp/
+public/scope/
+src/assets/example-data.json
