@@ -3,23 +3,23 @@
         <v-btn
             class="theme-switch"
             variant="plain"
-            :icon="switchIcon()"
+            :icon="switchIcon"
             :ripple="false"
             @click="toggleTheme" />
         <svg class="background-wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
             <path fill-opacity="1" d="M0,128L80,138.7C160,149,320,171,480,202.7C640,235,800,277,960,282.7C1120,288,1280,256,1360,240L1440,224L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z" />
         </svg>
-        <div class="about-section">
+        <section class="about hero is-fullheight">
             <v-card
-                class="about"
-                max-width="70%"
-                :elevation="elevation()"
+                class="about__card"
+                :width="width"
+                :elevation="elevation"
                 tonal>
                 <div class="d-flex flex-no-wrap justify-space-between">
                     <div>
                         <v-avatar
                             class="ma-3"
-                            size="260"
+                            :size="size"
                             rounded>
                             <v-img src="https://avatars.githubusercontent.com/u/14877471?v=4" />
                         </v-avatar>
@@ -64,14 +64,16 @@
                         variant="text" />
                 </v-card-actions>
             </v-card>
-        </div>
-        <div class="projects-section">
-            <ProjectCard />
-            <ProjectCard />
-            <ProjectCard />
-            <ProjectCard />
-            <ProjectCard />
-            <ProjectCard />
+        </section>
+        <div class="projects__wrap" :style="`width: ${width}`">
+            <section class="projects hero is-fullheight">
+                <ProjectCard />
+                <ProjectCard />
+                <ProjectCard />
+                <ProjectCard />
+                <ProjectCard />
+                <ProjectCard />
+            </section>
         </div>
         <v-btn
             class="scroll animate-icon"
@@ -82,25 +84,52 @@
 </template>
 
 <script setup lang="ts">
-import { inject, ref, onMounted, onUnmounted } from "vue";
-import { useTheme } from "vuetify";
+import { inject, ref, onMounted, onUnmounted, computed } from "vue";
+import { useTheme, useDisplay } from "vuetify";
 import Vue3SmoothScroll from "vue3-smooth-scroll";
 import ProjectCard from "~/components/TestProjectCard.vue";
 
 let isScrolling = false;
 let offset = 0;
 
+const { name } = useDisplay();
 const theme = useTheme();
-
-const smoothScroll = inject<typeof Vue3SmoothScroll>("smoothScroll");
 
 const scrollY = ref(0);
 
-const elevation = () => theme.global.current.value.dark ? 5 : 10;
+const smoothScroll = inject<typeof Vue3SmoothScroll>("smoothScroll");
 
-const switchIcon = () => theme.global.current.value.dark ? "mdi:mdi-weather-night" : "mdi:mdi-white-balance-sunny";
+const elevation = computed(() => theme.global.current.value.dark ? 5 : 10);
 
-const toggleTheme = () => theme.global.name.value = theme.global.current.value.dark ? "vdb-light" : "vdb-dark";
+const switchIcon = computed(() => theme.global.current.value.dark ? "mdi:mdi-weather-night" : "mdi:mdi-white-balance-sunny");
+
+const size = computed(() => {
+    switch (name.value) {
+        case "xs": return "120";
+        case "sm": return "200";
+        case "md":
+        case "lg":
+        case "xl":
+        case "xxl":
+        default: return "260";
+    }
+});
+
+const width = computed(() => {
+    switch (name.value) {
+        case "xs": return "95%";
+        case "sm": return "90%";
+        case "md":
+        case "lg": return "80%";
+        case "xl":
+        case "xxl":
+        default: return "70%";
+    }
+});
+
+function toggleTheme() {
+    theme.global.name.value = theme.global.current.value.dark ? "vdb-light" : "vdb-dark";
+}
 
 function onScrollUpdate() {
     scrollY.value = window.scrollY;
@@ -129,7 +158,7 @@ function scroll() {
     const icon = document.querySelector(".scroll i");
     if (icon) {
         if (scrollY.value < 400) {
-            const element = document.querySelector<HTMLDivElement>(".projects-section");
+            const element = document.querySelector<HTMLDivElement>(".projects");
             if (element) {
                 offset = element.offsetTop;
 
@@ -179,27 +208,39 @@ onUnmounted(() => window.removeEventListener("scroll", onScrollUpdate));
     fill: rgb(var(--v-theme-primary));
 }
 
-.about-section {
-    display: grid;
-    height: 100vh;
-}
-
 .about {
-    margin: auto;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    align-items: center;
 }
 
-.projects-section {
-    min-height: 100vh;
-    width: 70%;
-    margin: auto;
-    padding-top: 25px;
-    padding-bottom: 25px;
-    display: grid;
+.projects__wrap {
+    margin: 50px auto;
+}
+
+.projects {
+    display: flex;
+    flex-flow: row wrap;
+
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+
+.projects .project {
+    flex: 0 1;
+}
+
+/* .projects {
+    width: 100%;
+    margin: 25px 0 25px 0;
+    display: flex;
     grid-template-columns: auto auto;
     grid-template-rows: auto auto;
     column-gap: 25px;
     row-gap: 25px;
-}
+} */
 
 .scroll {
     position: fixed;
