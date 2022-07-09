@@ -1,20 +1,21 @@
-module.exports = {
-    root: true,
-    env: {
-        browser: true,
-        node: true
+{
+    "root": true,
+    "env": {
+        "node": true,
+        "browser": true
     },
-    parser: "vue-eslint-parser",
-    parserOptions: {
-        parser: "@typescript-eslint/parser"
+    "parser": "vue-eslint-parser",
+    "parserOptions": {
+        "ecmaVersion": 2022,
+        "parser": "@typescript-eslint/parser"
     },
-    extends: [
+    "extends": [
         "eslint:recommended",
         "plugin:vue/vue3-recommended",
         "plugin:@typescript-eslint/recommended"
     ],
     // add your custom rules here
-    rules: {
+    "rules": {
         // vue specific config
         "vue/no-unused-vars": "off",
         "vue/order-in-components": "off",
@@ -36,16 +37,14 @@ module.exports = {
             }
         ],
         "vue/multi-word-component-names": "off",
-
         // typescript specific config
         "@typescript-eslint/no-unused-vars": "off",
-
         // general eslint config
         "array-element-newline": [
             "error",
             {
-                multiline: true,
-                minItems: 2
+                "multiline": true,
+                "minItems": 2
             }
         ],
         "array-bracket-newline": [
@@ -65,7 +64,7 @@ module.exports = {
             "error",
             4,
             {
-                SwitchCase: 1
+                "SwitchCase": 1
             }
         ],
         "import/order": "off",
@@ -91,4 +90,4 @@ module.exports = {
         ],
         "space-before-function-paren": "off"
     }
-};
+}
