@@ -1,24 +1,35 @@
 {
+    "name": "vdbroek-nuxt",
+    "version": "3.0.0",
     "private": true,
     "scripts": {
-        "build": "nuxt build",
-        "dev": "nuxt dev",
-        "generate": "nuxt generate",
-        "preview": "nuxt preview"
+        "build": "cross-env ENV=production nuxt build",
+        "build:dev": "cross-env ENV=developemnt nuxt build",
+        "gen": "cross-env ENV=production nuxt generate",
+        "gen:dev": "cross-env ENV=developemnt nuxt generate",
+        "dev": "cross-env ENV=developemnt nuxt dev",
+        "preview": "cross-env ENV=developemnt nuxt preview"
+    },
+    "dependencies": {
+        "@element-plus/icons-vue": "^2.0.6",
+        "element-plus": "^2.2.9"
     },
     "devDependencies": {
         "@nuxtjs/google-fonts": "^2.0.0",
+        "@sentry/browser": "^7.6.0",
+        "@sentry/tracing": "^7.6.0",
         "@types/node": "^18.0.3",
         "@typescript-eslint/eslint-plugin": "^5.30.5",
         "@typescript-eslint/parser": "^5.30.5",
-        "autoprefixer": "^10.4.7",
+        "@unocss/nuxt": "^0.44.0",
+        "@vueuse/nuxt": "^8.9.1",
+        "cross-env": "^7.0.3",
         "eslint": "^8.19.0",
         "eslint-plugin-vue": "^9.2.0",
         "nuxt": "3.0.0-rc.4",
         "postcss": "^8.4.14",
         "sass": "^1.53.0",
-        "tailwindcss": "^3.1.5",
         "typescript": "^4.7.4",
-        "webpack": "^5.73.0"
+        "vue-gtag-next": "^1.14.0"
     }
 }
